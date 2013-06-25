@@ -101,7 +101,7 @@
                 detected.chrome = t;
                 detected.version = getFirstMatch(/crios\/(\d+(\.\d+)?)/i);
             }
-            detected.osversion = getFirstMatch(/os (\d+(_\d+)*) like mac os x/i).replace(/_/g, '.');
+            detected.osversion = getFirstMatch(/os (\d+([_\s]\d+)*) like mac os x/i).replace(/[_\s]/g, '.');
         }
 
         if (ipad) {

@@ -857,4 +857,23 @@ describe('mario', function () {
             });
         });
     });
+    describe('Bots', function () {
+        var userAgentStrings = [
+            'AdsBot-Google-Mobile (+http://www.google.com/mobile/adsbot.html) Mozilla (iPhone; U; CPU iPhone OS 3 0 like Mac OS X) AppleWebKit (KHTML, like Gecko) Mobile Safari'
+        ];
+
+        userAgentStrings.forEach(function (userAgentString) {
+            it('User Agent string: ' + userAgentString, function () {
+                var detected = mario(userAgentString);
+                expect(detected).to.eql({
+                    iphone: true,
+                    ios: true,
+                    osversion: '3.0',
+                    touch: true,
+                    webkit: true,
+                    safari: true,
+                });
+            });
+        });
+    });
 });
