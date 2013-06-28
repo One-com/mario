@@ -1,19 +1,24 @@
 {
-    "name": "mario",
-    "description": "a browser detector",
-    "keywords": ["ender", "browser", "sniff", "detection"],
-    "version": "1.4.0",
-    "homepage": "https://github.com/papandreou/mario",
-    "main": "./mario.js",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/papandreou/mario"
-    },
-    "scripts": {
-        "test": "mocha"
-    },
-    "devDependencies": {
-        "mocha": "*",
-        "expect.js": "*"
-    }
+  "name": "mario",
+  "description": "a browser detector",
+  "keywords": [
+    "ender",
+    "browser",
+    "sniff",
+    "detection"
+  ],
+  "version": "1.4.1",
+  "homepage": "https://github.com/papandreou/mario",
+  "main": "./mario.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/papandreou/mario"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "expect.js": "*"
+  }
 }
