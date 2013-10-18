@@ -31,6 +31,7 @@
         var opera = /opera/i.test(ua);
         var safari = /safari/i.test(ua);
         var ie = /msie/i.test(ua);
+        var trident = /trident/i.test(ua);
         var phantom = /phantom/i.test(ua);
         var touchpad = /touchpad/i.test(ua);
         var touch = /touch/i.test(ua);
@@ -41,6 +42,7 @@
         var android = /android/i.test(ua);
         var windowsPhone = /Windows Phone/i.test(ua);
         var gecko = /gecko\//i.test(ua);
+        var likeGecko = /like gecko/i.test(ua)
         var webkit = /webkit/i.test(ua);
 
         var detected = {};
@@ -122,6 +124,16 @@
         if (gecko) {
             detected.mozilla = t;
             detected.gecko = t;
+        }
+
+        if (likeGecko) {
+            if (trident) {
+                // IE11 represents as 'Trident like Gecko'
+                detected.msie = t;
+                // Should IE11 detect as a Gecko variant?
+                // detected.gecko = t;
+                detected.version = getFirstMatch(/rv:(\d+(?:\.\d+))/i);
+            }
         }
 
         if (android) {
