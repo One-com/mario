@@ -37,7 +37,7 @@
         var touch = /touch/i.test(ua);
         var iphone = /\(iphone;/i.test(ua);
         var ipad = /\(ipad;/i.test(ua);
-        var ipod = /\(ipod;/i.test(ua);
+        var ipod = /\(ipod( touch)?;/i.test(ua);
         var crios = /crios\//i.test(ua);
         var android = /android/i.test(ua);
         var windowsPhone = /Windows Phone/i.test(ua);

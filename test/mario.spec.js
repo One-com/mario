@@ -553,30 +553,59 @@ describe('mario', function () {
         });
 
         describe('IPod touch', function () {
-            var userAgentStrings = [
-                'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5',
-                'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_1 like Mac OS X; zh-cn) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8G4 Safari/6533.18.5',
-                'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_2_1 like Mac OS X; he-il) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
-            ];
+            describe('iOS 7', function () {
+                var userAgentStrings = [
+                    'Mozilla/5.0 (iPod touch; CPU iPhone OS 7_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Version/7.0 Mobile/11D5145e Safari/9537.53'
+                ];
 
-            var osversions = ['4.3.3', '4.3.1', '4.2.1'];
+                var osversions = ['7.1'];
 
-            userAgentStrings.forEach(function (userAgentString, i) {
-                it('usage agent: ' + userAgentString, function () {
-                    var detected = mario(userAgentString);
-                    var expected = {
-                        ipod: true,
-                        ios: true,
-                        touch: true,
-                        webkit: true,
-                        safari: true,
-                        version: '5.0'
-                    };
-                    if (osversions[i]) {
-                        expected.osversion = osversions[i];
-                    }
+                userAgentStrings.forEach(function (userAgentString, i) {
+                    it('usage agent: ' + userAgentString, function () {
+                        var detected = mario(userAgentString);
+                        var expected = {
+                            ipod: true,
+                            ios: true,
+                            touch: true,
+                            webkit: true,
+                            safari: true,
+                            version: '7.0'
+                        };
+                        if (osversions[i]) {
+                            expected.osversion = osversions[i];
+                        }
 
-                    expect(detected, 'to equal', expected);
+                        expect(detected, 'to equal', expected);
+                    });
+                });
+            });
+
+            describe('iOS 4', function () {
+                var userAgentStrings = [
+                    'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5',
+                    'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_3_1 like Mac OS X; zh-cn) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8G4 Safari/6533.18.5',
+                    'Mozilla/5.0 (iPod; U; CPU iPhone OS 4_2_1 like Mac OS X; he-il) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5'
+                ];
+
+                var osversions = ['4.3.3', '4.3.1', '4.2.1'];
+
+                userAgentStrings.forEach(function (userAgentString, i) {
+                    it('usage agent: ' + userAgentString, function () {
+                        var detected = mario(userAgentString);
+                        var expected = {
+                            ipod: true,
+                            ios: true,
+                            touch: true,
+                            webkit: true,
+                            safari: true,
+                            version: '5.0'
+                        };
+                        if (osversions[i]) {
+                            expected.osversion = osversions[i];
+                        }
+
+                        expect(detected, 'to equal', expected);
+                    });
                 });
             });
         });
