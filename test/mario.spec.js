@@ -1,8 +1,15 @@
 /*global describe, it*/
-var expect = require('unexpected');
+var unexpected = require('unexpected');
 var mario = require('../mario');
 
 describe('mario', function () {
+    var expect = unexpected.clone()
+        .addAssertion('to be identified as', function (expect, subject, properties) {
+            this.errorMode = 'bubble';
+            expect(subject, 'to only have keys', Object.keys(properties));
+            expect(subject, 'to have properties', properties);
+        });
+
     describe('Desktop', function () {
         describe('Windows', function () {
             describe('Internet Explorer', function () {
@@ -32,7 +39,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 msie: true,
                                 version: '7.0'
                             });
@@ -67,7 +74,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 msie: true,
                                 version: '8.0'
                             });
@@ -99,7 +106,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 msie: true,
                                 version: '9.0'
                             });
@@ -126,7 +133,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 msie: true,
                                 version: '10.0'
                             });
@@ -144,7 +151,7 @@ describe('mario', function () {
                         userAgentStrings.forEach(function (userAgentString) {
                             it('User Agent string: ' + userAgentString, function () {
                                 var detected = mario(userAgentString);
-                                expect(detected, 'to equal', {
+                                expect(detected, 'to be identified as', {
                                     msie: true,
                                     touch: true,
                                     version: '10.0'
@@ -162,7 +169,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 msie: true,
                                 version: '11.0'
                             });
@@ -177,7 +184,7 @@ describe('mario', function () {
                         userAgentStrings.forEach(function (userAgentString) {
                             it('User Agent string: ' + userAgentString, function () {
                                 var detected = mario(userAgentString);
-                                expect(detected, 'to equal', {
+                                expect(detected, 'to be identified as', {
                                     msie: true,
                                     touch: true,
                                     version: '11.0'
@@ -210,7 +217,7 @@ describe('mario', function () {
                 userAgentStrings.forEach(function (userAgentString, i) {
                     it('User Agent string: ' + userAgentString, function () {
                         var detected = mario(userAgentString);
-                        expect(detected, 'to equal', {
+                        expect(detected, 'to be identified as', {
                             firefox: true,
                             gecko: true,
                             mozilla: true,
@@ -222,7 +229,7 @@ describe('mario', function () {
                 it('User Agent string: Mozilla/5.0 (Android; Mobile; rv:18.0) Gecko/18.0 Firefox/18.0', function () {
                     var userAgentString = 'Mozilla/5.0 (Android; Mobile; rv:18.0) Gecko/18.0 Firefox/18.0';
                     var detected = mario(userAgentString);
-                    expect(detected, 'to equal', {
+                    expect(detected, 'to be identified as', {
                         firefox: true,
                         android: true,
                         gecko: true,
@@ -255,7 +262,7 @@ describe('mario', function () {
                             expected.version = versions[i];
                         }
 
-                        expect(detected, 'to equal', expected);
+                        expect(detected, 'to be identified as', expected);
                     });
                 });
             });
@@ -270,7 +277,7 @@ describe('mario', function () {
                 userAgentStrings.forEach(function (userAgentString, i) {
                     it('User Agent string: ' + userAgentString, function () {
                         var detected = mario(userAgentString);
-                        expect(detected, 'to equal', {
+                        expect(detected, 'to be identified as', {
                             firefox: true,
                             gecko: true,
                             mozilla: true,
@@ -303,7 +310,7 @@ describe('mario', function () {
                             expected.version = versions[i];
                         }
 
-                        expect(detected, 'to equal', expected);
+                        expect(detected, 'to be identified as', expected);
                     });
                 });
             });
@@ -320,7 +327,7 @@ describe('mario', function () {
                 userAgentStrings.forEach(function (userAgentString, i) {
                     it('User Agent string: ' + userAgentString, function () {
                         var detected = mario(userAgentString);
-                        expect(detected, 'to equal', {
+                        expect(detected, 'to be identified as', {
                             firefox: true,
                             gecko: true,
                             mozilla: true,
@@ -329,10 +336,41 @@ describe('mario', function () {
                     });
                 });
             });
+
+            describe('Opera (blink)', function () {
+                var userAgentStrings = [
+                    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36 OPR/15.0.1147.153'
+                ];
+
+                userAgentStrings.forEach(function (userAgentString, i) {
+                    it('User Agent string: ' + userAgentString, function () {
+                        var detected = mario(userAgentString);
+                        expect(detected, 'to be identified as', {
+                            version: '15.0',
+                            opera: true,
+                            blink: true
+                        });
+                    });
+                });
+            });
+
+            describe('Chrome (blink)', function () {
+                var userAgentStrings = [
+                    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.137 Safari/537.36'
+                ];
+
+                userAgentStrings.forEach(function (userAgentString, i) {
+                    it('User Agent string: ' + userAgentString, function () {
+                        var detected = mario(userAgentString);
+                        expect(detected, 'to be identified as', {
+                            version: '34.0',
+                            chrome: true,
+                            blink: true
+                        });
+                    });
+                });
+            });
         });
-
-
-
     });
 
     describe('Mobile', function () {
@@ -347,7 +385,7 @@ describe('mario', function () {
                 userAgentStrings.forEach(function (userAgentString) {
                     it('User Agent string: ' + userAgentString, function () {
                         var detected = mario(userAgentString);
-                        expect(detected, 'to equal', {
+                        expect(detected, 'to be identified as', {
                             msie: true,
                             touch: true,
                             version: '9.0'
@@ -367,7 +405,7 @@ describe('mario', function () {
                 userAgentStrings.forEach(function (userAgentString) {
                     it('User Agent string: ' + userAgentString, function () {
                         var detected = mario(userAgentString);
-                        expect(detected, 'to equal', {
+                        expect(detected, 'to be identified as', {
                             msie: true,
                             touch: true,
                             version: '10.0'
@@ -412,7 +450,7 @@ describe('mario', function () {
                                 expected.osversion = osversions[i];
                             }
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -436,7 +474,7 @@ describe('mario', function () {
                                 version: '23.0'
                             };
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -469,7 +507,7 @@ describe('mario', function () {
                                 expected.osversion = osversions[i];
                             }
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -494,7 +532,7 @@ describe('mario', function () {
                                 version: '5.0'
                             };
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -517,7 +555,7 @@ describe('mario', function () {
                                 version: '23.0'
                             };
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -545,7 +583,7 @@ describe('mario', function () {
                                 version: '4.0'
                             };
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -575,7 +613,7 @@ describe('mario', function () {
                             expected.osversion = osversions[i];
                         }
 
-                        expect(detected, 'to equal', expected);
+                        expect(detected, 'to be identified as', expected);
                     });
                 });
             });
@@ -604,7 +642,7 @@ describe('mario', function () {
                             expected.osversion = osversions[i];
                         }
 
-                        expect(detected, 'to equal', expected);
+                        expect(detected, 'to be identified as', expected);
                     });
                 });
             });
@@ -644,7 +682,7 @@ describe('mario', function () {
                                 expected.osversion = osversions[i];
                             }
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -667,7 +705,7 @@ describe('mario', function () {
                                 version: '23.0'
                             };
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -700,7 +738,7 @@ describe('mario', function () {
                                 expected.osversion = osversions[i];
                             }
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -734,7 +772,7 @@ describe('mario', function () {
                                 expected.osversion = osversions[i];
                             }
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -759,7 +797,7 @@ describe('mario', function () {
                                 version: '4.0'
                             };
 
-                            expect(detected, 'to equal', expected);
+                            expect(detected, 'to be identified as', expected);
                         });
                     });
                 });
@@ -779,7 +817,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 version: '4.0',
                                 android: true,
                                 osversion: osversions[i],
@@ -804,7 +842,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 android: true,
                                 osversion: osversions[i],
                                 touch: true,
@@ -831,7 +869,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 version: '4.0',
                                 android: true,
                                 osversion: osversions[i],
@@ -850,7 +888,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 android: true,
                                 osversion: '4.0.4',
                                 touch: true,
@@ -871,7 +909,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 version: '4.0',
                                 android: true,
                                 osversion: '2.2',
@@ -886,7 +924,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 android: true,
                                 osversion: '2.3',
                                 touch: true,
@@ -905,7 +943,7 @@ describe('mario', function () {
                     userAgentStrings.forEach(function (userAgentString, i) {
                         it('User Agent string: ' + userAgentString, function () {
                             var detected = mario(userAgentString);
-                            expect(detected, 'to equal', {
+                            expect(detected, 'to be identified as', {
                                 android: true,
                                 touch: true,
                                 firefox: true,
@@ -927,7 +965,7 @@ describe('mario', function () {
         userAgentStrings.forEach(function (userAgentString) {
             it('User Agent string: ' + userAgentString, function () {
                 var detected = mario(userAgentString);
-                expect(detected, 'to equal', {
+                expect(detected, 'to be identified as', {
                     iphone: true,
                     ios: true,
                     osversion: '3.0',

@@ -29,6 +29,7 @@
         var firefox = /firefox/i.test(ua);
         var seamonkey = /seamonkey\//i.test(ua);
         var opera = /opera/i.test(ua);
+        var operaBlink = /OPR/.test(ua);
         var safari = /safari/i.test(ua);
         var ie = /msie/i.test(ua);
         var trident = /trident/i.test(ua);
@@ -42,7 +43,7 @@
         var android = /android/i.test(ua);
         var windowsPhone = /Windows Phone/i.test(ua);
         var gecko = /gecko\//i.test(ua);
-        var likeGecko = /like gecko/i.test(ua)
+        var likeGecko = /like gecko/i.test(ua);
         var webkit = /webkit/i.test(ua);
 
         var detected = {};
@@ -50,6 +51,9 @@
         if (ie) {
             detected.msie = t;
             detected.version = getFirstMatch(/msie (\d+(\.\d+)?);/i);
+        } else if (operaBlink) {
+            detected.opera = t;
+            detected.version = getFirstMatch(/OPR\/(\d+(\.\d+)?)/i);
         } else if (chrome) {
             detected.chrome = t;
             detected.version = getFirstMatch(/chrome\/(\d+(\.\d+)?)/i);
@@ -77,10 +81,6 @@
                 detected.webkit = t;
                 detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
             }
-        }
-
-        if (webkit) {
-            detected.webkit = t;
         }
 
         if (!detected.version) {
@@ -144,6 +144,17 @@
                 detected.osversion = androidVersion;
             }
         }
+
+        if (operaBlink ||
+            (chrome && detected.version >= 28) ||
+            (android && detected.osversion >= 4.4)) {
+            detected.blink = t;
+        }
+
+        if (!detected.blink && webkit) {
+            detected.webkit = t;
+        }
+
 
         return detected;
     }
