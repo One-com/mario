@@ -41,6 +41,7 @@ describe('mario', function () {
                             var detected = mario(userAgentString);
                             expect(detected, 'to be identified as', {
                                 msie: true,
+                                explorer: true,
                                 version: '7.0'
                             });
                         });
@@ -76,6 +77,7 @@ describe('mario', function () {
                             var detected = mario(userAgentString);
                             expect(detected, 'to be identified as', {
                                 msie: true,
+                                explorer: true,
                                 version: '8.0'
                             });
                         });
@@ -108,6 +110,7 @@ describe('mario', function () {
                             var detected = mario(userAgentString);
                             expect(detected, 'to be identified as', {
                                 msie: true,
+                                explorer: true,
                                 version: '9.0'
                             });
                         });
@@ -135,6 +138,7 @@ describe('mario', function () {
                             var detected = mario(userAgentString);
                             expect(detected, 'to be identified as', {
                                 msie: true,
+                                explorer: true,
                                 version: '10.0'
                             });
                         });
@@ -153,6 +157,7 @@ describe('mario', function () {
                                 var detected = mario(userAgentString);
                                 expect(detected, 'to be identified as', {
                                     msie: true,
+                                    explorer: true,
                                     touch: true,
                                     version: '10.0'
                                 });
@@ -171,6 +176,7 @@ describe('mario', function () {
                             var detected = mario(userAgentString);
                             expect(detected, 'to be identified as', {
                                 msie: true,
+                                explorer: true,
                                 version: '11.0'
                             });
                         });
@@ -186,6 +192,7 @@ describe('mario', function () {
                                 var detected = mario(userAgentString);
                                 expect(detected, 'to be identified as', {
                                     msie: true,
+                                    explorer: true,
                                     touch: true,
                                     version: '11.0'
                                 });
@@ -387,8 +394,10 @@ describe('mario', function () {
                         var detected = mario(userAgentString);
                         expect(detected, 'to be identified as', {
                             msie: true,
+                            explorer: true,
                             touch: true,
-                            version: '9.0'
+                            version: '9.0',
+                            explorerMobile: true
                         });
                     });
                 });
@@ -407,8 +416,10 @@ describe('mario', function () {
                         var detected = mario(userAgentString);
                         expect(detected, 'to be identified as', {
                             msie: true,
+                            explorer: true,
                             touch: true,
-                            version: '10.0'
+                            version: '10.0',
+                            explorerMobile: true
                         });
                     });
                 });

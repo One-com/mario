@@ -155,6 +155,13 @@
             detected.webkit = t;
         }
 
+        // Aliases
+        if (detected.msie) {
+            detected.explorer = t;
+            if (windowsPhone) {
+                detected.explorerMobile = t;
+            }
+        }
 
         return detected;
     }
