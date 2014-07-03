@@ -45,7 +45,7 @@
         var gecko = /gecko\//i.test(ua);
         var likeGecko = /like gecko/i.test(ua);
         var webkit = /webkit/i.test(ua);
-        var blackBarry = /\(BB\d+;/i.test(ua);
+        var blackBerry = /\(BB\d+;/i.test(ua);
 
         var detected = {};
 
@@ -70,7 +70,7 @@
         } else if (opera) {
             detected.opera = t;
             detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
-        } else if (safari && !android && !blackBarry) {
+        } else if (safari && !android && !blackBerry) {
             detected.safari = t;
             detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
         } else {
@@ -78,7 +78,7 @@
             if (ipad || iphone || ipod) {
                 detected.safari = t;
                 detected.webkit = t;
-            } else if (android || blackBarry) {
+            } else if (android || blackBerry) {
                 detected.webkit = t;
                 detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
             }
@@ -110,8 +110,8 @@
             }
         }
 
-        if (blackBarry) {
-            detected.blackbarry = true;
+        if (blackBerry) {
+            detected.blackberry = true;
         }
 
         if (ipad) {

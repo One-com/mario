@@ -426,7 +426,7 @@ describe('mario', function () {
             });
         });
 
-        describe('BlackBarry', function () {
+        describe('BlackBerry', function () {
             describe('Phone', function () {
                 var userAgentStrings = [
                     'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.1+ (KHTML, like Gecko) Version/10.0.0.1337 Mobile Safari/537.1+'
@@ -436,7 +436,7 @@ describe('mario', function () {
                     it('User Agent string: ' + userAgentString, function () {
                         var detected = mario(userAgentString);
                         expect(detected, 'to be identified as', {
-                            blackbarry: true,
+                            blackberry: true,
                             touch: true,
                             webkit: true,
                             version: '10.0'
