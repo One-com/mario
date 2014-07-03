@@ -397,7 +397,7 @@ describe('mario', function () {
                             explorer: true,
                             touch: true,
                             version: '9.0',
-                            explorerMobile: true
+                            explorermobile: true
                         });
                     });
                 });
@@ -419,7 +419,7 @@ describe('mario', function () {
                             explorer: true,
                             touch: true,
                             version: '10.0',
-                            explorerMobile: true
+                            explorermobile: true
                         });
                     });
                 });

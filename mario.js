@@ -159,7 +159,7 @@
         if (detected.msie) {
             detected.explorer = t;
             if (windowsPhone) {
-                detected.explorerMobile = t;
+                detected.explorermobile = t;
             }
         }
 
