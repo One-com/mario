@@ -426,6 +426,26 @@ describe('mario', function () {
             });
         });
 
+        describe('BlackBarry', function () {
+            describe('Phone', function () {
+                var userAgentStrings = [
+                    'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.1+ (KHTML, like Gecko) Version/10.0.0.1337 Mobile Safari/537.1+'
+                ];
+
+                userAgentStrings.forEach(function (userAgentString) {
+                    it('User Agent string: ' + userAgentString, function () {
+                        var detected = mario(userAgentString);
+                        expect(detected, 'to be identified as', {
+                            blackbarry: true,
+                            touch: true,
+                            webkit: true,
+                            version: '10.0'
+                        });
+                    });
+                });
+            });
+        });
+
         describe('iPad', function () {
             describe('iOS 6', function () {
                 describe('running Safari', function () {

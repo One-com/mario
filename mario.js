@@ -45,6 +45,7 @@
         var gecko = /gecko\//i.test(ua);
         var likeGecko = /like gecko/i.test(ua);
         var webkit = /webkit/i.test(ua);
+        var blackBarry = /\(BB\d+;/i.test(ua);
 
         var detected = {};
 
@@ -69,7 +70,7 @@
         } else if (opera) {
             detected.opera = t;
             detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
-        } else if (safari && !android) {
+        } else if (safari && !android && !blackBarry) {
             detected.safari = t;
             detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
         } else {
@@ -77,7 +78,7 @@
             if (ipad || iphone || ipod) {
                 detected.safari = t;
                 detected.webkit = t;
-            } else if (android) {
+            } else if (android || blackBarry) {
                 detected.webkit = t;
                 detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
             }
@@ -107,6 +108,10 @@
             if (osVersion) {
                 detected.osversion = osVersion.replace(/[_\s]/g, '.');
             }
+        }
+
+        if (blackBarry) {
+            detected.blackbarry = true;
         }
 
         if (ipad) {
