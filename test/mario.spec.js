@@ -439,7 +439,8 @@ describe('mario', function () {
                             blackberry: true,
                             touch: true,
                             webkit: true,
-                            version: '10.0'
+                            version: '10.0',
+                            osversion: '10'
                         });
                     });
                 });

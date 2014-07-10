@@ -34,7 +34,6 @@
         var ie = /msie/i.test(ua);
         var trident = /trident/i.test(ua);
         var phantom = /phantom/i.test(ua);
-        var touchpad = /touchpad/i.test(ua);
         var touch = /touch/i.test(ua);
         var iphone = /\(iphone;/i.test(ua);
         var ipad = /\(ipad;/i.test(ua);
@@ -112,6 +111,7 @@
 
         if (blackBerry) {
             detected.blackberry = true;
+            detected.osversion = getFirstMatch(/\(BB(\d+);/i);
         }
 
         if (ipad) {
