@@ -25,6 +25,9 @@
             return match && match[1];
         }
 
+        var windows = /windows/i.test(ua) || /win32/i.test(ua);
+        var macos = /mac os/i.test(ua);
+        var linux = /linux/i.test(ua);
         var chrome = /chrome/i.test(ua);
         var firefox = /firefox/i.test(ua);
         var seamonkey = /seamonkey\//i.test(ua);
@@ -85,6 +88,16 @@
 
         if (!detected.version) {
             delete detected.version;
+        }
+
+        if (windows) {
+            detected.windows = t;
+        }
+        if (macos) {
+            detected.macos = t;
+        }
+        if (linux) {
+            detected.linux = t;
         }
 
         if (touch) {
