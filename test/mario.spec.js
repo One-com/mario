@@ -199,6 +199,24 @@ describe('mario', function () {
                         });
                     });
                 });
+
+                describe('"Spartan"', function () {
+                    var userAgentStrings = [
+                        'Mozilla/5.0 (Windows NT 6.4; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.143 Safari/537.36 Edge/12.0'
+                    ];
+
+                    userAgentStrings.forEach(function (userAgentString) {
+                        it('User Agent string: ' + userAgentString, function () {
+                            expect(userAgentString, 'to be identified as', {
+                                windows: true,
+                                msie: true,
+                                explorer: true,
+                                spartan: true,
+                                version: '12.0'
+                            });
+                        });
+                    });
+                });
             });
 
             describe('Firefox', function () {

@@ -35,6 +35,7 @@
         var operaBlink = /OPR/.test(ua);
         var safari = /safari/i.test(ua);
         var ie = /msie/i.test(ua);
+        var spartan = /edge/i.test(ua);
         var trident = /trident/i.test(ua);
         var phantom = /phantom/i.test(ua);
         var touch = /touch/i.test(ua);
@@ -54,6 +55,10 @@
         if (ie) {
             detected.msie = t;
             detected.version = getFirstMatch(/msie (\d+(\.\d+)?);/i);
+        } else if (spartan) {
+            detected.msie = t;
+            detected.spartan = t;
+            detected.version = getFirstMatch(/Edge\/(\d+(\.\d+)?)/i);
         } else if (operaBlink) {
             detected.opera = t;
             detected.version = getFirstMatch(/OPR\/(\d+(\.\d+)?)/i);
@@ -169,7 +174,7 @@
             detected.blink = t;
         }
 
-        if (!detected.blink && webkit) {
+        if (!detected.blink && webkit && !spartan) {
             detected.webkit = t;
         }
 
