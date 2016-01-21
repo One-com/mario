@@ -54,18 +54,22 @@
 
         if (ie) {
             detected.msie = t;
+            detected.name = 'Internet Explorer';
             detected.version = getFirstMatch(/msie (\d+(\.\d+)?);/i);
         } else if (spartan) {
-            detected.msie = t;
-            detected.spartan = t;
-            detected.version = getFirstMatch(/Edge\/(\d+(\.\d+)?)/i);
+            detected.name = 'Edge';
+            detected.msedge = t;
+            detected.version = getFirstMatch(/Edge\/(\d+)/i);
         } else if (operaBlink) {
+            detected.name = 'Opera';
             detected.opera = t;
             detected.version = getFirstMatch(/OPR\/(\d+(\.\d+)?)/i);
         } else if (chrome) {
+            detected.name = 'Chrome';
             detected.chrome = t;
             detected.version = getFirstMatch(/chrome\/(\d+(\.\d+)?)/i);
         } else if (firefox) {
+            detected.name = 'Firefox';
             detected.firefox = t;
             detected.version = getFirstMatch(/firefox\/(\d+(\.\d+)?)/i);
         } else if (phantom) {
@@ -75,9 +79,11 @@
             detected.seamonkey = t;
             detected.version = getFirstMatch(/seamonkey\/(\d+(\.\d+)?)/i);
         } else if (opera) {
+            detected.name = 'Opera';
             detected.opera = t;
             detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
         } else if (safari && !android && !blackBerry) {
+            detected.name = 'Safari';
             detected.safari = t;
             detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
         } else {
@@ -118,8 +124,11 @@
             detected.ios = t;
             if (!detected.version && crios) {
                 delete detected.safari;
+                detected.name = 'Chrome';
                 detected.chrome = t;
                 detected.version = getFirstMatch(/crios\/(\d+(\.\d+)?)/i);
+            } else {
+                detected.name = 'Safari';
             }
             var osVersion = getFirstMatch(/os (\d+([_\s]\d+)*) like mac os x/i);
             if (osVersion) {
@@ -128,6 +137,7 @@
         }
 
         if (blackBerry) {
+            detected.name = 'Blackberry';
             detected.blackberry = true;
             detected.osversion = getFirstMatch(/\(BB(\d+);/i);
         }
@@ -152,6 +162,7 @@
         if (likeGecko) {
             if (trident) {
                 // IE11 represents as 'Trident like Gecko'
+                detected.name = 'Internet Explorer';
                 detected.msie = t;
                 // Should IE11 detect as a Gecko variant?
                 // detected.gecko = t;
@@ -160,6 +171,9 @@
         }
 
         if (android) {
+            if (!detected.name) {
+                detected.name = 'Android';
+            }
             detected.touch = t;
             detected.android = t;
             var androidVersion = getFirstMatch(/android[ \/](\d+(\.\d+)*)/i);
@@ -174,7 +188,7 @@
             detected.blink = t;
         }
 
-        if (!detected.blink && webkit && !spartan) {
+        if (!detected.blink && webkit) {
             detected.webkit = t;
         }
 
