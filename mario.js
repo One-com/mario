@@ -91,6 +91,8 @@
             if (ipad || iphone || ipod) {
                 detected.safari = t;
                 detected.webkit = t;
+            } else if (trident) {
+                detected.msie = t;
             } else if (android || blackBerry) {
                 detected.webkit = t;
                 detected.version = getFirstMatch(/version\/(\d+(\.\d+)?)/i);
@@ -104,7 +106,7 @@
         if (windows) {
             detected.windows = t;
         }
-        if (macos) {
+        if (macos && !trident) {
             detected.macos = t;
         }
         if (linux) {
@@ -138,7 +140,7 @@
 
         if (blackBerry) {
             detected.name = 'Blackberry';
-            detected.blackberry = true;
+            detected.blackberry = t;
             detected.osversion = getFirstMatch(/\(BB(\d+);/i);
         }
 
@@ -170,7 +172,7 @@
             }
         }
 
-        if (android) {
+        if (android && !trident) {
             if (!detected.name) {
                 detected.name = 'Android';
             }
@@ -188,7 +190,7 @@
             detected.blink = t;
         }
 
-        if (!detected.blink && webkit) {
+        if (!detected.blink && !trident && webkit) {
             detected.webkit = t;
         }
 

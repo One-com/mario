@@ -446,6 +446,26 @@ describe('mario', function () {
                     });
                 });
             });
+
+            describe('Internet Explorer 11', function () {
+                var userAgentStrings = [
+                    'Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; 909) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537'
+                ];
+
+                userAgentStrings.forEach(function (userAgentString) {
+                    it('User Agent string: ' + userAgentString, function () {
+                        expect(userAgentString, 'to be identified as', {
+                            name: 'Internet Explorer',
+                            windows: true,
+                            msie: true,
+                            explorer: true,
+                            touch: true,
+                            version: '11.0',
+                            explorermobile: true
+                        });
+                    });
+                });
+            });
         });
 
         describe('BlackBerry', function () {
