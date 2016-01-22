@@ -220,6 +220,7 @@ describe('mario', function () {
                         expect(userAgentString, 'to be identified as', {
                             name: 'Edge',
                             windows: true,
+                            edge: true,
                             msedge: true,
                             webkit: true,
                             version: versions[i]

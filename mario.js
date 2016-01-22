@@ -59,6 +59,7 @@
         } else if (spartan) {
             detected.name = 'Edge';
             detected.msedge = t;
+            detected.edge = t;
             detected.version = getFirstMatch(/Edge\/(\d+)/i);
         } else if (operaBlink) {
             detected.name = 'Opera';
