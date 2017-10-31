@@ -618,7 +618,8 @@ describe('mario', function () {
 
                 describe('running Chrome', function () {
                     var userAgentStrings = [
-                        'Mozilla/5.0 (iPad; U; CPU OS 4_3_5 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/8L1 Safari/6533.18.5'
+                        'Mozilla/5.0 (iPad; U; CPU OS 4_3_5 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) CriOS/23.0.1271.100 Mobile/8L1 Safari/6533.18.5',
+                        'Mozilla/5.0 (iPad; CPU OS 4_3_5 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8L1 Safari/6533.18.5'
                     ];
 
                     userAgentStrings.forEach(function (userAgentString, i) {
