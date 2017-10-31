@@ -118,7 +118,6 @@ describe('mario', function () {
                             });
                         });
                     });
-
                 });
 
                 describe('version 10', function () {
@@ -165,6 +164,9 @@ describe('mario', function () {
                                     touch: true,
                                     version: '10.0'
                                 });
+                                expect(mario(userAgentString), 'to not have key', {
+                                    windowsPhone: true
+                                });
                             });
                         });
                     });
@@ -205,6 +207,9 @@ describe('mario', function () {
                                     explorer: true,
                                     touch: true,
                                     version: '11.0'
+                                });
+                                expect(mario(userAgentString), 'to not have key', {
+                                    windowsPhone: true
                                 });
                             });
                         });
