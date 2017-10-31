@@ -172,7 +172,9 @@ describe('mario', function () {
 
                 describe('version 11', function () {
                     var userAgentStrings = [
-                        'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko'
+                        'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; rv:11.0) like Gecko',
+                        'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv 11.0) like Gecko',
+                        'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko'
                     ];
 
                     userAgentStrings.forEach(function (userAgentString) {
@@ -189,7 +191,9 @@ describe('mario', function () {
 
                     describe('with touch', function () {
                         var userAgentStrings = [
-                            'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko'
+                            'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko',
+                            // Touch surfice desktop
+                            'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko'
                         ];
 
                         userAgentStrings.forEach(function (userAgentString) {
