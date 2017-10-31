@@ -422,6 +422,7 @@ describe('mario', function () {
                             msie: true,
                             explorer: true,
                             touch: true,
+                            windowsPhone: true,
                             version: '9.0',
                             explorermobile: true
                         });
@@ -445,6 +446,7 @@ describe('mario', function () {
                             msie: true,
                             explorer: true,
                             touch: true,
+                            windowsPhone: true,
                             version: '10.0',
                             explorermobile: true
                         });
@@ -465,6 +467,7 @@ describe('mario', function () {
                             msie: true,
                             explorer: true,
                             touch: true,
+                            windowsPhone: true,
                             version: '11.0',
                             explorermobile: true
                         });

@@ -120,6 +120,7 @@
 
         if (windowsPhone) {
             detected.touch = t;
+            detected.windowsPhone = t;
         }
 
         if (ipad || iphone || ipod) {
