@@ -7,6 +7,11 @@ describe('mario', function () {
         .addAssertion('to be identified as', function (expect, subject, properties) {
             this.errorMode = 'bubble';
             var detected = mario(subject);
+            for (var i in properties) {
+                if (typeof properties[i] === 'undefined') {
+                    delete properties[i];
+                }
+            }
             expect(detected, 'to only have keys', Object.keys(properties));
             expect(detected, 'to have properties', properties);
         });
@@ -162,10 +167,8 @@ describe('mario', function () {
                                     msie: true,
                                     explorer: true,
                                     touch: true,
+                                    windowsPhone: undefined,
                                     version: '10.0'
-                                });
-                                expect(mario(userAgentString), 'to not have key', {
-                                    windowsPhone: true
                                 });
                             });
                         });
@@ -206,10 +209,8 @@ describe('mario', function () {
                                     msie: true,
                                     explorer: true,
                                     touch: true,
+                                    windowsPhone: undefined,
                                     version: '11.0'
-                                });
-                                expect(mario(userAgentString), 'to not have key', {
-                                    windowsPhone: true
                                 });
                             });
                         });
