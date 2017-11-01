@@ -120,6 +120,7 @@
 
         if (windowsPhone) {
             detected.touch = t;
+            detected.windowsPhone = t;
         }
 
         if (ipad || iphone || ipod) {
@@ -169,7 +170,7 @@
                 detected.msie = t;
                 // Should IE11 detect as a Gecko variant?
                 // detected.gecko = t;
-                detected.version = getFirstMatch(/rv:(\d+(?:\.\d+))/i);
+                detected.version = getFirstMatch(/rv[ :](\d+(?:\.\d+))/i);
             }
         }
 
